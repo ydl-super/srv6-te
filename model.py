@@ -77,6 +77,9 @@ class Network():
         policy_loss = tf.reduce_sum(policy_loss, 1, keepdims=True)                                      #[batch_size, 1]
         policy_loss = tf.multiply(policy_loss, tf.stop_gradient(-advantages))                           #[batch_size, 1]
         # Tensor("Mul:0", shape=(10, 10, 132), dtype=float32)
+
+        #Tensor("ExpandDims:0", shape=(10, 1), dtype=float32)
+        #Tensor("Mul:0", shape=(10, 1), dtype=float32)
         #input shapes: [10,10,132], [10,132,1]
         policy_loss -= entropy_weight * entropy
         policy_loss = tf.reduce_sum(policy_loss)
